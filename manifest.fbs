@@ -1,0 +1,17 @@
+enum DownloadState: byte { Unknown = 0, Unstarted, Downloading, Successed }
+
+table AssetData {
+    path:       string(key);
+    crc32:      uint;
+    size:       float; // in KB
+    compressed: bool = false;
+    state:      DownloadState = Unstarted; 
+}
+
+table ManifestData {  
+    appVersion:         string;
+    resourceVersion:    string;
+    assets:             [AssetData];
+}
+
+root_type ManifestData;  
